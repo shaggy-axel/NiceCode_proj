@@ -7,6 +7,7 @@ The server will consist of one page with a program for loading image files.
 To which you can upload files of the following type, preferably using drag-n-drop:
 
 https://cloud.nicecode.biz/s/6ZrNMwJnCByH5TW/preview
+
 https://cloud.nicecode.biz/s/qnWsd6o9gGzzcSW/preview
 
 After loading, the server will have to process this image and display the following information:
