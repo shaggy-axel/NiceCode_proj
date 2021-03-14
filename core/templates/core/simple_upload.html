@@ -3,6 +3,15 @@
 {% load static %}
 
 {% block content %}
+    <div id="boxA" draggable="true">
+        You can dragndrop:)
+    </div>
+    <div id="big" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)">
+
+    </div>
+    <section id="section" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)">
+
+    </section>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <input type="file" name="myfile">
