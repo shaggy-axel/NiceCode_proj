@@ -1,4 +1,15 @@
 # djangoProject3
+
+install: opencv
+
+pip install:
+django
+numpy
+core
+
+
+
+_______________________________________________________
 just a test from NiceCode
 
 Testing task for Python developers
