@@ -6,9 +6,9 @@ pip install:
 django
 numpy
 core
-
-
-
+_______
+migrate
+runserver
 _______________________________________________________
 just a test from NiceCode
 
