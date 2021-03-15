@@ -27,9 +27,9 @@ def simple_upload(request):
 
         avg_color_per_row = np.average(im, axis=0)
         avg_color = np.average(avg_color_per_row, axis=0)
-        red_col = avg_color[0]
+        bl_col = avg_color[0]
         gr_col = avg_color[1]
-        bl_col = avg_color[2]
+        red_col = avg_color[2]
 
         height, width = im.shape[0], im.shape[1]
         output = im.copy()
@@ -41,7 +41,7 @@ def simple_upload(request):
             dp=1,
             minDist=10,
             param1=None,
-            param2=155
+            param2=100
         )
         number_obj = 0
         # ensure at least some circles were found
@@ -62,7 +62,7 @@ def simple_upload(request):
 
         return render(request, 'core/simple_upload.html', {
             'red': red_col,
-            'green' : gr_col,
+            'green': gr_col,
             'blue': bl_col,
             'uploaded_file_url': uploaded_file_url,
             'height': height,
