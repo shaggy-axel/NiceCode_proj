@@ -9,12 +9,42 @@ import cv2
 
 
 def home(request):
+    """
+
+    Parameters
+    ----------
+    request
+
+    Returns
+    -------
+
+    """
     documents = Document.objects.all()
 
     return render(request, 'core/home.html', {'documents': documents})
 
 
 def simple_upload(request):
+    """
+
+    Parameters:
+        file, file_url,
+        image, size_image,
+        average_color_image,
+        count_object_on_image,
+    ----------
+    request:
+        Methods, Files
+
+
+    Returns
+        html doc,
+        image, image url
+        size image, average color image,
+        number of coins, amount of money
+    -------
+
+    """
     if request.method == 'POST' and request.FILES['myfile']:
         myfile = request.FILES['myfile']
         fs = FileSystemStorage()
