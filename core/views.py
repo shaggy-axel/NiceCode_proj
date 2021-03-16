@@ -52,14 +52,14 @@ def simple_upload(request):
         uploaded_file_url = fs.url(filename)
         # _________________________
         im = cv2.imread(filename)
-
+        h, w = im.shape[0], im.shape[1]
         avg_color_per_row = np.average(im, axis=0)
         avg_color = np.average(avg_color_per_row, axis=0)
         bl_col = avg_color[0]
         gr_col = avg_color[1]
         red_col = avg_color[2]
 
-        height, width = im.shape[0], im.shape[1]
+        im = cv2.resize(im, (960, 1280))
         output = im.copy()
         gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
         # detect circles in the image
@@ -69,7 +69,7 @@ def simple_upload(request):
             dp=1,
             minDist=10,
             param1=None,
-            param2=100
+            param2=105
         )
         number_obj = 0
         # ensure at least some circles were found
@@ -93,8 +93,8 @@ def simple_upload(request):
             'green': gr_col,
             'blue': bl_col,
             'uploaded_file_url': uploaded_file_url,
-            'height': height,
-            'width': width,
+            'height': h,
+            'width': w,
             'number_of_coins': number_obj,
             'image': uploaded_file_url
         })
