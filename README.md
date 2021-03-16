@@ -5,7 +5,6 @@ install: opencv
 pip install:
 django
 numpy
-core
 _______
 migrate
 runserver
@@ -27,3 +26,13 @@ After loading, the server will have to process this image and display the follow
 2. the average color of the picture (output as RGB and a rectangle of the corresponding color)  ;
 3.number of coins on the substrate  ;
 4.total amount of coins ;
+________________________________________________________
+
+Click on Simple Upload
+
+![image](https://user-images.githubusercontent.com/79697348/111300504-35a73680-8662-11eb-91e1-d6219215f738.png)
+
+Use Drag'n'Drop
+Click on Upload and get your Image Data
+
+![image](https://user-images.githubusercontent.com/79697348/111300248-e9f48d00-8661-11eb-8dbf-b2f95e2b1b65.png)
