@@ -5,24 +5,27 @@
 {% block content %}
     <div id="boxA" draggable="true">
     </div>
-    <div id="big" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)">
+    <div id="big" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)"
+         ondragover="return dragOver(event)">
     </div>
-    <section id="section" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)">
+    <section id="section" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)"
+             ondragover="return dragOver(event)">
     </section>
-  <input type='hidden' name='csrfmiddlewaretoken' value='0QRWHnYVg776y2l66mcvZqp8alrv4lb8S8lZ4ZJUWGZFA5VHrVfL2mpH29YZ39PW' />
+    <input type='hidden' name='csrfmiddlewaretoken'
+           value='0QRWHnYVg776y2l66mcvZqp8alrv4lb8S8lZ4ZJUWGZFA5VHrVfL2mpH29YZ39PW'/>
     <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="file" name="myfile">
-    <button type="submit">Upload</button>
-  </form>
+        {% csrf_token %}
+        <input type="file" name="myfile">
+        <button type="submit">Upload</button>
+    </form>
 
-  {% if uploaded_file_url %}
-    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
-      <p>File Data: <br> height:{{ height }} <br> width: {{ width }} <br> {{ number_of_coins }} coins</p>
-      <p style="border:3px rgb({{ red }},{{ green }},{{ blue }})  solid; width:440px;">
-average color: [{{ red }},{{ green }},{{ blue }}]</p>
-      <p> <img src="{{ image }}" alt="" width="250"> </p>
-  {% endif %}
+    {% if uploaded_file_url %}
+        <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+        <p>File Data: <br> height:{{ height }} <br> width: {{ width }} <br> {{ number_of_coins }} coins</p>
+        <p style="border:3px rgb({{ red }},{{ green }},{{ blue }})  solid; width:440px;">
+            average color: [{{ red }},{{ green }},{{ blue }}]</p>
+        <p><img src="{{ image }}" alt="" width="250"></p>
+    {% endif %}
 
-  <p><a href="{% url 'home' %}">Return to home</a></p>
+    <p><a href="{% url 'home' %}">Return to home</a></p>
 {% endblock %}
