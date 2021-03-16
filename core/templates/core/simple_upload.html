@@ -4,15 +4,13 @@
 
 {% block content %}
     <div id="boxA" draggable="true">
-        You can dragndrop:)
     </div>
     <div id="big" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)">
-
     </div>
     <section id="section" ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)">
-
     </section>
-  <form method="post" enctype="multipart/form-data">
+  <input type='hidden' name='csrfmiddlewaretoken' value='0QRWHnYVg776y2l66mcvZqp8alrv4lb8S8lZ4ZJUWGZFA5VHrVfL2mpH29YZ39PW' />
+    <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <input type="file" name="myfile">
     <button type="submit">Upload</button>

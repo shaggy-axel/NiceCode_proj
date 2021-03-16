@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
 
-import os
-
 from core.models import Document
 from core.forms import DocumentForm
 
