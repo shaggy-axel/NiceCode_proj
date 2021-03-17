@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect
-from django.core.files.storage import FileSystemStorage
-
-from core.models import Document
-from core.forms import DocumentForm
-
-import numpy as np
 import cv2
+import numpy as np
+import imutils
+from django.core.files.storage import FileSystemStorage
+from django.shortcuts import render, redirect
+
+from core.forms import DocumentForm
+from core.models import Document
 
 
 def home(request):
@@ -69,9 +69,12 @@ def simple_upload(request):
             dp=1,
             minDist=10,
             param1=None,
-            param2=105
+            param2=110
         )
+        amount_money = 0
+        radius_cir = []
         number_obj = 0
+
         # ensure at least some circles were found
         if circles is not None:
             # convert the (x, y) coordinates and radius of the circles to integers
@@ -81,11 +84,43 @@ def simple_upload(request):
                 # draw the circle in the output image, then draw a rectangle
                 # corresponding to the center of the circle
                 cv2.circle(output, (x, y), r, (0, 255, 0), 4)
-                cv2.rectangle(output, (x - 5, y - 5), (x + 5, y + 5), (0, 128, 255), -1)
+                radius_cir.append(r)
                 number_obj += 1
             # show the output image
+            gray = cv2.cvtColor(output, cv2.COLOR_BGR2GRAY)
+            gray = cv2.bilateralFilter(gray, 13, 15, 15)
+            canny = cv2.Canny(gray, 150, 175)
 
+            contours_c = cv2.findContours(canny.copy(), cv2.RETR_EXTERNAL,
+                                          cv2.CHAIN_APPROX_SIMPLE)
+            contours_c = imutils.grab_contours(contours_c)
+            contours_c = sorted(contours_c, key=cv2.contourArea, reverse=True)
+
+            # loop over the contours
+            for c in contours_c:
+                # approximate the contour
+                peri = cv2.arcLength(c, True)
+                approx = cv2.approxPolyDP(c, 0.02 * peri, True)
+            cv2.drawContours(output, [approx], -1, (0, 255, 0), 2)
             cv2.imwrite(filename, output)
+
+            for i in radius_cir:
+                if i < 40:
+                    radius_cir.remove(i)
+            radius_cir = sorted(radius_cir)
+            i = number_obj - 1
+            while i > -1:
+
+                if radius_cir[i] >= 54:
+                    amount_money += 5
+                if (radius_cir[i] >= 49) and (radius_cir[i] < 54):
+                    amount_money += 2
+                if (radius_cir[i] >= 47) and (radius_cir[i] <= 48):
+                    amount_money += 10
+                if (radius_cir[i] >= 41) and (radius_cir[i] < 47):
+                    amount_money += 1
+                i -= 1
+
         # _________________________
 
         return render(request, 'core/simple_upload.html', {
@@ -96,7 +131,8 @@ def simple_upload(request):
             'height': h,
             'width': w,
             'number_of_coins': number_obj,
-            'image': uploaded_file_url
+            'image': uploaded_file_url,
+            'amount_of_money': amount_money
         })
     return render(request, 'core/simple_upload.html')
 
