@@ -1,6 +1,6 @@
 import cv2
-import numpy as np
 import imutils
+import numpy as np
 from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render, redirect
 

@@ -1,12 +1,12 @@
 # djangoProject3
+
 install python interpreter v.3.7 <br>
 Start install.sh file
 _______________________________________________________
 Just a test from NiceCode <br>
-Testing task for Python developers
-Create a simple web server based on Django or Flask. 
-The server will consist of one page with a program for loading image files. 
-To which you can upload files of the following type, preferably using drag-n-drop:
+Testing task for Python developers Create a simple web server based on Django or Flask. The server will consist of one
+page with a program for loading image files. To which you can upload files of the following type, preferably using
+drag-n-drop:
 
 https://cloud.nicecode.biz/s/6ZrNMwJnCByH5TW/preview <br>
 https://cloud.nicecode.biz/s/qnWsd6o9gGzzcSW/preview
